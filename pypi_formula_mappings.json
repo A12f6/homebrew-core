@@ -215,7 +215,7 @@
   },
   "cryptography": {
     "exclude_packages": ["cffi", "pycparser"],
-    "extra_packages": ["setuptools-rust"]
+    "extra_packages": ["maturin", "setuptools-rust"]
   },
   "cycode": {
     "exclude_packages": ["certifi"]
