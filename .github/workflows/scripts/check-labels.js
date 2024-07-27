@@ -1,32 +1,4 @@
-module.exports = async ({github, context, core}, formulae_detect, dependent_testing) => {
-    const deps_suffix = dependent_testing ? '-deps' : ''
-
-    const { data: { labels: labels } } = await github.rest.pulls.get({
-      owner: context.repo.owner,
-      repo: context.repo.repo,
-      pull_number: context.issue.number
-    })
-    const label_names = labels.map(label => label.name)
-    var syntax_only = false
-
-    if (label_names.includes('CI-syntax-only')) {
-      console.log('CI-syntax-only label found. Skipping tests job.')
-      syntax_only = true
-    } else if (label_names.includes('CI-published-bottle-commits')) {
-      console.log('CI-published-bottle-commits label found. Skipping tests job.')
-      syntax_only = true
-    } else {
-      console.log('No CI-syntax-only label found. Running tests job.')
-    }
-
-    core.setOutput('syntax-only', syntax_only)
-    if (syntax_only) {
-      return
-    }
-
-    var linux_runner = 'ubuntu-22.04'
-    if (label_names.includes(`CI-linux-self-hosted${deps_suffix}`)) {
-      linux_runner = 'linux-self-hosted-1'
+module.exports = async ({github, context, -1'
     } else if (label_names.includes(`CI-linux-large-runner${deps_suffix}`)) {
       linux_runner = 'homebrew-large-bottle-build'
     }
